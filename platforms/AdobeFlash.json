@@ -1,17 +1,17 @@
 {
-  "databaseVersion": 14,
-  "revisionNumber": 1,
+  "  "databaseVersion": 14,
+  "revisionNumber": 2,
   "platform": {
     "name": "Adobe Flash",
-    "uniqueId": "adobeflash",
-    "shortname": "adobeflash",
+    "uniqueId": "flash",
+    "shortname": "flash",
     "description": null,
-    "acceptedFilenameRegex": "^(?!(?:\\._|\\.).*).*$",
+    "acceptedFilenameRegex": "^(.*)\\.(?:swf|SWF|joiplay|JOIPLAY|joi)$",
     "scraperSourceList": [],
     "boxArtAspectRatioId": 2,
     "useCustomBoxArtAspectRatio": false,
     "customBoxArtAspectRatio": null,
-    "screenAspectRatioId": 1,
+    "screenAspectRatioId": 0,
     "useCustomScreenAspectRatio": false,
     "customScreenAspectRatio": null,
     "retroAchievementsConsoleIdList": [],
@@ -19,12 +19,42 @@
   },
   "playerList": [
     {
-      "name": "Swiff",
-      "uniqueId": "flash.io.navivani.swiff",
-      "description": "Supported extensions: swiffid",
-      "acceptedFilenameRegex": "^(.*)\\.(?:swiffid)$",
-      "amStartArguments": "-n io.navivani.swiff/.MainActivity\n -a android.intent.action.VIEW\n -d {file.uri}\n -t application/octet-stream\n --activity-clear-task  --activity-clear-top  --activity-no-history",
-      "killPackageProcesses": true,
+      "name": "flash - Joiplay Bigcup",
+      "uniqueId": "flash_v2.com.joiplay.joimaster.bigcup",
+      "description": "Legacy/backup player (source marks it for removal). VERIFY package/activity (com.joiplay.joimaster.bigcup is a guess) and the %INJECT% token: value mapped to {file.nameNoExtension}.joiplay; if Bigcup needs a path prefix before the .joiplay shortcut, adjust -e id.",
+      "acceptedFilenameRegex": "^(.*)\\.(?:swf|SWF|joiplay|JOIPLAY|joi)$",
+      "amStartArguments": "-n com.joiplay.joimaster.bigcup/.JoiMasterActivity\n-a android.intent.action.MAIN\n--activity-clear-task\n--activity-clear-top\n-e id {file.nameNoExtension}.joiplay",
+      "killPackageProcesses": false,
+      "killPackageProcessesWarning": true,
+      "extra": ""
+    },
+    {
+      "name": "flash - JoiPlay",
+      "uniqueId": "flash_v2.com.joiplay.joimaster",
+      "description": "Supported extensions: swf, joiplay, joi.",
+      "acceptedFilenameRegex": "^(.*)\\.(?:swf|SWF|joiplay|JOIPLAY|joi)$",
+      "amStartArguments": "-n cyou.joiplay.joiplay/.activities.SplashActivity\n-a android.intent.action.MAIN\n--activity-clear-task\n--activity-clear-top\n-e shortcut_path {file.path}",
+      "killPackageProcesses": false,
+      "killPackageProcessesWarning": true,
+      "extra": ""
+    },
+    {
+      "name": "flash - Ruffle",
+      "uniqueId": "flash_v2.com.ruffle.ruffle",
+      "description": "Supported extensions: swf, joiplay, joi. Package confirmed on device: cyou.joiplay.runtime.ruffle (a JoiPlay runtime, not a standalone app). Uses custom action cyou.joiplay.runtime.flash.run with -d {file.uri}.",
+      "acceptedFilenameRegex": "^(.*)\\.(?:swf|SWF|joiplay|JOIPLAY|joi)$",
+      "amStartArguments": "-n cyou.joiplay.runtime.ruffle/.LauncherActivity\n-a cyou.joiplay.runtime.flash.run\n-d {file.uri}\n--activity-clear-top",
+      "killPackageProcesses": false,
+      "killPackageProcessesWarning": true,
+      "extra": ""
+    },
+    {
+      "name": "flash - SWF Player",
+      "uniqueId": "flash_v2.com.mosty.de.swfplayer",
+      "description": "Supported extensions: swf, joiplay, joi. (VERIFY package/activity: com.mosty.de.swfplayer is a best guess; VIEW -d uses a content-provider URI -> {file.uri})",
+      "acceptedFilenameRegex": "^(.*)\\.(?:swf|SWF|joiplay|JOIPLAY|joi)$",
+      "amStartArguments": "-n com.mosty.de.swfplayer/.SWFPlayer\n-a android.intent.action.VIEW\n-d {file.uri}\n--activity-clear-task\n--activity-clear-top",
+      "killPackageProcesses": false,
       "killPackageProcessesWarning": true,
       "extra": ""
     }
